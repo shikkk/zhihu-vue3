@@ -1,13 +1,20 @@
 <template>
   <div class="container">
+    <CommonHeader :user="userInfo"></CommonHeader>
     <ColumnList :list="testData"></ColumnList>
   </div>
 </template>
 
 <script lang="ts">
 import ColumnList, { ColumnProps } from './components/ColumnList.vue'
+import CommonHeader, { UserProps } from "@/components/CommonHeader.vue"
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { ref, computed, reactive, toRefs, defineComponent } from 'vue'
+const userInfo: UserProps = {
+  isLogin: true,
+  name: 'shizhikai',
+  id: 1
+}
 const testData: ColumnProps[] = [
   {
     id: 1,
@@ -36,7 +43,8 @@ const testData: ColumnProps[] = [
 export default defineComponent ({
   name: 'App',
   components: {
-    ColumnList
+    ColumnList,
+    CommonHeader
   },
   setup () {
     const isModal = ref(false)
@@ -47,7 +55,8 @@ export default defineComponent ({
       isModal.value = false
     }
     return {
-      testData
+      testData,
+      userInfo
     }
   }
 })
