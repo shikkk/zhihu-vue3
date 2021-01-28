@@ -1,5 +1,5 @@
 <template>
-    <div class="input-container pb-3">
+    <div class="input-container">
         <input v-bind="$attrs"
                class="form-control"
                :class="{'is-invalid': inputRef.error}"
