@@ -6,20 +6,18 @@
 </template>
 
 <script lang="ts">
-import CommonHeader, { UserProps } from "@/components/CommonHeader.vue"
+import CommonHeader from "@/components/CommonHeader.vue"
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { ref, computed, reactive, toRefs, defineComponent } from 'vue'
-const userInfo: UserProps = {
-  isLogin: false,
-  name: 'shizhikai',
-  id: 1
-}
+import { computed, defineComponent } from 'vue'
+import { useStore } from 'vuex'
 export default defineComponent ({
   name: 'App',
   components: {
     CommonHeader
   },
   setup () {
+    const store = useStore()
+    const userInfo = computed(() => store.state.userInfo)
     return {
       userInfo
     }

@@ -4,19 +4,19 @@
             <div class="mb-3">
                 <label class="form-label">邮箱</label>
                 <validate-input
-                        :rules="emailRoles"
-                        v-model="emailValue"
-                        type="text"
-                        placeholder="请输入邮箱名"
+                    :rules="emailRoles"
+                    v-model="emailValue"
+                    type="text"
+                    placeholder="请输入邮箱名"
                 ></validate-input>
             </div>
             <div class="mb-3">
                 <label class="form-label">密码</label>
                 <validate-input
-                        :rules="pwdRoles"
-                        v-model="pwdValue"
-                        type="password"
-                        placeholder="请输入密码"
+                    :rules="pwdRoles"
+                    v-model="pwdValue"
+                    type="password"
+                    placeholder="请输入密码"
                 ></validate-input>
             </div>
             <template #submit>
@@ -29,7 +29,9 @@
 <script lang="ts">
 import ValidateForm from "@/components/Input/ValidateForm.vue";
 import ValidateInput, { RulesProp } from "@/components/Input/ValidateInput.vue"
-import {defineComponent, ref} from "vue";
+import {defineComponent, ref} from "vue"
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 export default defineComponent ({
     name: 'Login',
     components: {
@@ -52,8 +54,13 @@ export default defineComponent ({
         ]
         const emailValue = ref('shizhikai')
         const pwdValue = ref('123')
+        const store = useStore()
+        const router = useRouter()
         const onSubmit = (isSubmit: boolean) => {
-            console.log(isSubmit)
+            if (isSubmit) {
+                store.commit('login')
+                router.push('/')
+            }
         }
         return {
             emailRoles,
